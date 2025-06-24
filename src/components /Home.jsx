@@ -33,3 +33,22 @@ const Home = () => {
       setError(`Failed to load ${category}.`);
     }
   };
+
+  const searchMovies = async () => {
+    if (!searchQuery.trim()) return;
+    try {
+      const res = await fetch(
+        `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(searchQuery)}&page=1`
+      );
+      const data = await res.json();
+      if (data.results.length === 0) {
+        setError("No results found.");
+        setMovies([]);
+      } else {
+        setMovies(data.results);
+        setError("");
+      }
+    } catch {
+      setError("Search failed. Please try again.");
+    }
+  };
