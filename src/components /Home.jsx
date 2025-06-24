@@ -53,3 +53,31 @@ const Home = () => {
     }
   };
 
+  return (
+    <div className="App">
+      <Header
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onSearch={searchMovies}
+        onCategoryClick={fetchCategory}
+        onTrendingClick={fetchTrending}
+      />
+
+      <a href="/" className="back-btn">Back to Home</a>
+
+      {movies.length === 0 && !error && (
+        <div className="landing-message">
+          <h2>Welcome to EUTOPIA!</h2>
+          <p>Click "Trending" to explore movies.</p>
+        </div>
+      )}
+
+      <div id="movie-container">
+        {error && <h3>{error}</h3>}
+        {!error && movies.length > 0 && <MovieContainer movies={movies} />}
+      </div>
+    </div>
+  );
+};
+
+export default Home;
