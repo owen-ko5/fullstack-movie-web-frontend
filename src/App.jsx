@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
-// Removed Home if unused
+
 import MovieDetail from './components/MovieDetail';
 
 
