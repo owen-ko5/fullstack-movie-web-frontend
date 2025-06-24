@@ -52,3 +52,4 @@ const Home = () => {
       setError("Search failed. Please try again.");
     }
   };
+
