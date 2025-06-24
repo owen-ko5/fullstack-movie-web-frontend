@@ -20,4 +20,41 @@ const Login = () => {
       setError('Login failed. Check your credentials.');
     }
   };
-  
+
+  return (
+    <div className="login-container">
+      <div className="login-box">
+        <h2 className="login-title">Sign In</h2>
+
+        <label htmlFor="identifier">Username or Email</label>
+        <input
+          name="identifier"
+          id="identifier"
+          value={form.identifier}
+          onChange={handleChange}
+          placeholder="Enter your username or email"
+        />
+
+        <label htmlFor="password">Password</label>
+        <input
+          name="password"
+          id="password"
+          type="password"
+          value={form.password}
+          onChange={handleChange}
+          placeholder="Enter your password"
+        />
+
+        <button onClick={handleLogin}>Sign In</button>
+
+        {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
+
+        <p className="login-footer">
+          New to MovieApp? <a href="/register">Sign up now</a>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
