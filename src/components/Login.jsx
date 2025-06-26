@@ -5,11 +5,19 @@ import '../style.css';
 const Login = () => {
   const [form, setForm] = useState({ identifier: '', password: '' });
   const [error, setError] = useState(null);
+<<<<<<< HEAD
   const [loading, setLoading] = useState(false); // Optional: show loading state
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setError(null); // clear error when typing
+=======
+  const [loading, setLoading] = useState(false); 
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setError(null); 
+>>>>>>> Updated Frontend
   };
 
   const handleLogin = async () => {
@@ -18,7 +26,11 @@ const Login = () => {
       const res = await axios.post('http://localhost:5000/api/login', form);
       localStorage.setItem('token', res.data.access_token);
       localStorage.setItem('username', res.data.username || form.identifier);
+<<<<<<< HEAD
       window.location.href = '/'; // ✅ Redirect to homepage after login
+=======
+      window.location.href = '/'; 
+>>>>>>> Updated Frontend
     } catch (err) {
       setError('Login failed. Check your credentials.');
     } finally {

@@ -20,7 +20,11 @@ const MovieCard = ({ movie }) => {
           <p><strong>Year:</strong> {movieYear}</p>
           <p className="overview">{movieDesc.slice(0, 100)}...</p>
 
+<<<<<<< HEAD
           {/* 🚀 Trailer Only */}
+=======
+         
+>>>>>>> Updated Frontend
           <div className="button-row" style={{ marginTop: '1rem' }}>
             <Link
               to={`/movies/${id}`}
