@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import MovieContainer from './MovieContainer';
 
@@ -8,6 +8,18 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  // ✅ UseEffect now includes apiUrl in dependencies to fix the ESLint warning
+  useEffect(() => {
+    fetch(`${apiUrl}/api/movies`) // replace with your actual Flask endpoint
+      .then(res => res.json())
+      .then(data => {
+        console.log("🎬 Flask API data:", data);
+        // setMovies(data); // uncomment if you want to show backend movies
+      })
+      .catch(err => console.error("❌ Error fetching from Flask backend:", err));
+  }, [apiUrl]); // ✅ include apiUrl in dependency array
 
   const fetchTrending = async () => {
     try {
@@ -25,6 +37,7 @@ const Home = () => {
       const url = category === "animation"
         ? `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&page=1&with_genres=16`
         : `https://api.themoviedb.org/3/discover/${category}?api_key=${API_KEY}&language=en-US&page=1`;
+
       const res = await fetch(url);
       const data = await res.json();
       setMovies(data.results);

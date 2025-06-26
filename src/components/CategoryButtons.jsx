@@ -1,33 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-import Login from './components/Login';
-import Register from '.components/Register';
-import Dashboard from '.components/Dashboard';
-import Home from '.components/Home';
-import MovieDetail from '.components/MovieDetail';
+const CategoryButtons = ({ onCategoryClick, onTrendingClick }) => (
+  <div className="category-buttons">
 
-import Navbar from './components/MovieDetail';
+    <button onClick={onTrendingClick}>Trending</button>
 
-const App = ()=> {
-    const token = localStorage.getitem('token');
+    <button onClick={() => onCategoryClick("movie")}>Movies</button>
 
-    return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-    <Route path="/login" element={<Login />} />
-    <Route path="/register" element={<Register />} />
-    <Route
-      path="/dashboard"
-      element={token ? <Dashboard /> : <Navigate to="/login" />}
-    />
-    <Route path="/home" element={<Home />} />
-    <Route path="/movies/:id" element={<MovieDetail />} />
-  </Routes>
-</Router>
-  );
-};
+    <button onClick={() => onCategoryClick("tv")}>Series</button>
 
-export default App;
+    <button onClick={() => onCategoryClick("animation")}>Animation</button>
+    
+  </div>
+);
+
+export default CategoryButtons;
